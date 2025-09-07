@@ -1,6 +1,6 @@
 ﻿**README:** 
 
-- **Video Showcase** 
+**Video Showcase** 
 
   <https://youtu.be/gubyeDgfuJM>
 
