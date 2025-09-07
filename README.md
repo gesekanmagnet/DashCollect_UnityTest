@@ -6,7 +6,8 @@
 
 **Versions** 
 
-  Unity 60000.52f1 LTS Nakama SDK 3.15.0 
+  Unity 60000.52f1 LTS 
+  Nakama SDK 3.15.0 
 
 **Docker compose steps** 
 - Open Terminal on nakama/typescript-project directory 
