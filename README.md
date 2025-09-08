@@ -5,12 +5,6 @@
 - [Main Task](https://youtu.be/gubyeDgfuJM)  
 - [Race Mode: Matchmaking](https://youtu.be/DgEuJ-kzXnE)  
 
-<<<<<<< Updated upstream
-  <https://youtu.be/gubyeDgfuJM>
-  <https://youtu.be/DgEuJ-kzXnE>
-=======
->>>>>>> Stashed changes
-
 **Versions** 
 
 - Unity 60000.52f1 LTS 
