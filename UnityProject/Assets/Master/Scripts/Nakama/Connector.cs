@@ -58,7 +58,7 @@ public class Connector : MonoBehaviour
         // Authenticate with the Nakama server using Device Authentication.
         try
         {
-            session = await client.AuthenticateCustomAsync(deviceId);
+            session = await client.AuthenticateDeviceAsync(deviceId);
             var account = await client.GetAccountAsync(session);
             Debug.Log("Username: " + account.User.Username);
             UpdateStatus("Authenticated");

@@ -63,7 +63,7 @@ public class ConnectInterface : MonoBehaviour
     {
         matchText.SetText("FIND MATCH");
         joinText.SetText("JOIN MATCH");
-        //matchText.transform.parent.gameObject.SetActive(true);
+        matchText.transform.parent.gameObject.SetActive(true);
         //joinText.transform.parent.gameObject.SetActive(true);
 
         eventTrigger.enabled = false;

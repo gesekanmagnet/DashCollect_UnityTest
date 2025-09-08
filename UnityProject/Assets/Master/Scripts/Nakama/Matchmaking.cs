@@ -23,10 +23,49 @@ public class Matchmaking : MonoBehaviour
 
     private void LoggedIn()
     {
-        Connector.socket.ReceivedMatchmakerMatched += OnReceiveMatchmakerMatched;
-        Connector.socket.ReceivedMatchState += OnReceiveMatchState;
+        //Connector.socket.ReceivedMatchmakerMatched += OnReceiveMatchmakerMatched;
+        //Connector.socket.ReceivedMatchState += OnReceiveMatchState;
+
+        Connector.socket.ReceivedMatchState += state =>
+        {
+            //Debug.LogError("Lose");
+            if (state.OpCode == 1)
+            {
+                MainThreadDispatcher.Enqueue(() =>
+                {
+                    EventCallback.OnGameOver(GameResult.Lose);
+                });
+            }
+        };
+
+        Connector.socket.ReceivedMatchmakerMatched += async matched =>
+        {
+            //Debug.LogError("Match found");
+
+            MainThreadDispatcher.Enqueue(() =>
+            {
+                EventCallback.OnMatchFound();
+            });
+
+            var join = await Connector.socket.JoinMatchAsync(matched);
+
+            MainThreadDispatcher.Enqueue(() =>
+            {
+                isMatched = true;
+                matchId = join.Id;
+                Debug.LogError(matchId);
+
+                EventCallback.OnMatchStart();
+
+                //foreach (var player in join.Presences)
+                //{
+                //    Debug.LogError("Player in match: " + player.Username);
+                //}
+
+            });
+        };
     }
-    
+
     /// <summary>
     /// Find match through matchmaking
     /// </summary>
@@ -35,7 +74,7 @@ public class Matchmaking : MonoBehaviour
         await Connector.socket.AddMatchmakerAsync(minCount: 2, maxCount: 2);
         try
         {
-            Debug.LogError("Finding");
+            //Debug.LogError("Finding");
         }
         catch (System.Exception e)
         {
@@ -53,9 +92,18 @@ public class Matchmaking : MonoBehaviour
         if (!isMatched) return;
 
         await Connector.socket.SendMatchStateAsync(matchId, 1, session.Username);
+        try
+        {
+            EventCallback.OnGameOver(Connector.session.UserId.Equals(session.UserId) ? GameResult.Win : GameResult.Lose);
 
-        EventCallback.OnGameOver(Connector.session.UserId.Equals(session.UserId) ? GameResult.Win : GameResult.Lose);
-        Debug.Log(session.Username + ": completed the game");
+            Debug.LogError(session.Username + ": completed the game");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogException(e);
+            throw;
+        }
+
     }
 
     private async void OnReceiveMatchmakerMatched(IMatchmakerMatched match)

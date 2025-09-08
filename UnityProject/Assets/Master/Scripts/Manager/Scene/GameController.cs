@@ -89,8 +89,8 @@ public class GameController : MonoBehaviour
     {
         gamePaused = true;
 
-        if(gameResult.Equals(GameResult.Win))
-            EventCallback.OnScore(currentTime, playerHit);
+        //if(gameResult.Equals(GameResult.Win))
+            //EventCallback.OnScore(currentTime, playerHit);
         
         currentTime = 0;
         playerHit = 0;
