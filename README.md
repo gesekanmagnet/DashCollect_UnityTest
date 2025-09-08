@@ -1,9 +1,15 @@
 ﻿**README:** 
 
-**Video Showcase** 
+**Video Showcase**  
 
+- [Main Task](https://youtu.be/gubyeDgfuJM)  
+- [Race Mode: Matchmaking](https://youtu.be/DgEuJ-kzXnE)  
+
+<<<<<<< Updated upstream
   <https://youtu.be/gubyeDgfuJM>
   <https://youtu.be/DgEuJ-kzXnE>
+=======
+>>>>>>> Stashed changes
 
 **Versions** 
 
